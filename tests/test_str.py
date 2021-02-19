@@ -65,6 +65,11 @@ def test_week():
     tm.assert_series_equal(roll >> week(), exp)
 
 
+#This function originally used Periods and/or timestamps from other libraries
+#However, when we call "col.dt.is_leap_year", we are expecting a DateTime
+#To keep this clean and avoid making spaghetti connections with other modules
+#we may or may not touch in the future, I simply replaced the Periods with
+#DateTimes
 def test_is_leap_year():
         dt = pd.Series(pd.date_range("2000-01-01", periods=1, freq="Y"))
         assert (dt >> is_leap_year())[0]

@@ -91,6 +91,8 @@ def month(col):
     return col.dt.month
 
 
+#Note: This function did not have any documentation with help other then line 97, I tried
+#my best to write some new docmumentation in the stlye of similar functions
 @pipeable
 def quarter(col):
     """The quarter of the date.
@@ -117,6 +119,7 @@ def quarter(col):
     """
     return col.dt.quarter
 
+#This function is being depreciated, so it will return a warning when using Pytest
 @pipeable
 def week(col):
     """The week ordinal of the year.
@@ -169,7 +172,7 @@ def is_leap_year(col):
     >>> idx
     DatetimeIndex(['2012-12-31', '2013-12-31', '2014-12-31'],
                   dtype='datetime64[ns]', freq='A-DEC')
-    >>> idx.is_leap_year
+    >>> idx >> is_leap_year()
     array([ True, False, False])
     
     >>> dates_series = pd.Series(idx)
@@ -178,7 +181,7 @@ def is_leap_year(col):
     1   2013-12-31
     2   2014-12-31
     dtype: datetime64[ns]
-    >>> dates_series.dt.is_leap_year
+    >>> dates_series >> is_leap_year()
     0     True
     1    False
     2    False
